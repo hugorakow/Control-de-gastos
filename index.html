@@ -795,38 +795,31 @@ function showDetail(title, rows) {
   if(!rows.length){
     document.getElementById('detailContent').innerHTML='<div style="font-size:.75rem;color:var(--muted);padding:.5rem 0;">Sin movimientos para mostrar.</div>';
     document.getElementById('detailModal').classList.add('open');
-    return;
+  } else {
+    var total=rows.reduce(function(s,r){return s+r.amount;},0);
+    var bySub={};
+    rows.forEach(function(r){var key=r.subcat||r.cat;bySub[key]=(bySub[key]||0)+r.amount;});
+    var subEntries=Object.entries(bySub).sort(function(a,b){return b[1]-a[1];});
+    var html='<div style="margin-bottom:.8rem;display:flex;justify-content:space-between;align-items:center;">'
+      +'<span style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">'+rows.length+' movimientos</span>'
+      +'<span style="font-family:\'Playfair Display\',serif;font-size:1.2rem;font-weight:700;">'+fmt(total)+'</span></div>';
+    html+='<div style="max-height:340px;overflow-y:auto;">';
+    subEntries.forEach(function(entry){
+      var sub=entry[0],amt=entry[1];
+      var pct=total>0?((amt/total)*100).toFixed(1):'0';
+      var barW=total>0?((amt/total)*100).toFixed(0):0;
+      html+='<div style="margin-bottom:.7rem;">'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.25rem;">'
+        +'<span style="font-size:.78rem;font-weight:500;">'+sub+'</span>'
+        +'<span style="font-size:.78rem;font-family:\'Playfair Display\',serif;font-weight:700;">'+fmt(amt)
+        +' <span style="font-size:.65rem;color:var(--muted);font-family:\'IBM Plex Mono\',monospace;">('+pct+'%)</span></span></div>'
+        +'<div style="height:6px;background:var(--surface2);border-radius:3px;">'
+        +'<div style="height:6px;background:var(--expense);border-radius:3px;width:'+barW+'%;"></div></div></div>';
+    });
+    html+='</div>';
+    document.getElementById('detailContent').innerHTML=html;
+    document.getElementById('detailModal').classList.add('open');
   }
-  var total=rows.reduce(function(s,r){return s+r.amount;},0);
-  // Agrupar por subcategoría
-  var bySub={};
-  rows.forEach(function(r){
-    var key=r.subcat||r.cat;
-    bySub[key]=(bySub[key]||0)+r.amount;
-  });
-  var subEntries=Object.entries(bySub).sort(function(a,b){return b[1]-a[1];});
-  var html='<div style="margin-bottom:.8rem;display:flex;justify-content:space-between;align-items:center;">'
-    +'<span style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">'+rows.length+' movimientos</span>'
-    +'<span style="font-family:\'Playfair Display\',serif;font-size:1.2rem;font-weight:700;">'+fmt(total)+'</span>'
-    +'</div>';
-  html+='<div style="max-height:340px;overflow-y:auto;">';
-  subEntries.forEach(function(entry){
-    var sub=entry[0], amt=entry[1];
-    var pct=total>0?((amt/total)*100).toFixed(1):'0';
-    var barW=total>0?((amt/total)*100).toFixed(0):0;
-    html+='<div style="margin-bottom:.7rem;">'
-      +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.25rem;">'
-      +'<span style="font-size:.78rem;font-weight:500;">'+sub+'</span>'
-      +'<span style="font-size:.78rem;font-family:\'Playfair Display\',serif;font-weight:700;">'+fmt(amt)+' <span style="font-size:.65rem;color:var(--muted);font-family:\'IBM Plex Mono\',monospace;">('+pct+'%)</span></span>'
-      +'</div>'
-      +'<div style="height:6px;background:var(--surface2);border-radius:3px;">'
-      +'<div style="height:6px;background:var(--expense);border-radius:3px;width:'+barW+'%;"></div>'
-      +'</div>'
-      +'</div>';
-  });
-  html+='</div>';
-  document.getElementById('detailContent').innerHTML=html;
-  document.getElementById('detailModal').classList.add('open');
 }
 
 function showCatDetail(cat, data) {
