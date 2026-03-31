@@ -837,7 +837,7 @@ function showUserDetail(user, data) {
   showDetail('👤 '+user, rows);
 }
 
-return db.doc('config/categories').set({data:categories});}
+db.doc('config/categories').set({data:categories});
 
 function addCategory(){
   var type=document.getElementById('newCatType').value,name=document.getElementById('newCatName').value.trim();
