@@ -118,17 +118,15 @@ header{display:flex;align-items:flex-start;justify-content:space-between;margin-
 .cat-header span{font-size:.72rem;font-weight:500;}
 .sub-item{display:flex;justify-content:space-between;align-items:center;padding:.25rem .65rem .25rem 1.3rem;font-size:.68rem;color:var(--muted);}
 .section-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:.7rem 0 .35rem;}
-/* Gráficos */
 .graf-filters{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:.8rem 1rem;display:flex;gap:.8rem;flex-wrap:wrap;align-items:flex-end;margin-bottom:1rem;}
 .graf-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1rem;}
 .graf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .graf-panel{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.2rem;}
 .graf-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
 .chart-wrap{position:relative;}
-/* Modales */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.8rem;width:360px;max-width:90vw;max-height:90vh;overflow-y:auto;}
+.modal{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.8rem;width:400px;max-width:90vw;max-height:90vh;overflow-y:auto;}
 .modal h3{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:1rem;}
 .modal p{font-size:.75rem;color:var(--muted);}
 .modal-btns{display:flex;gap:.5rem;margin-top:1.1rem;}
@@ -143,25 +141,18 @@ header{display:flex;align-items:flex-start;justify-content:space-between;margin-
 <body>
 <div class="app">
   <header>
-    <div class="header-left">
-      <h1>Agenda</h1>
-      <p>Movimientos · Personal &amp; Negocio</p>
-    </div>
+    <div class="header-left"><h1>Agenda</h1><p>Movimientos · Personal &amp; Negocio</p></div>
     <div class="header-right">
       <div class="sync-badge ok" id="syncBadge"><div class="sync-dot"></div><span id="syncText">Conectando...</span></div>
-      <div class="user-selector">
-        <label>Anotando:</label>
+      <div class="user-selector"><label>Anotando:</label>
         <select id="currentUser">
           <option value="">— Elegir usuario —</option>
-          <option value="Hugo">Hugo</option>
-          <option value="Vanina">Vanina</option>
-          <option value="Ariel">Ariel</option>
-          <option value="Manuel">Manuel</option>
+          <option value="Hugo">Hugo</option><option value="Vanina">Vanina</option>
+          <option value="Ariel">Ariel</option><option value="Manuel">Manuel</option>
         </select>
       </div>
     </div>
   </header>
-
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showSection('movimientos',this)">Movimientos</button>
     <button class="nav-tab" onclick="showSection('saldos',this)">Saldos</button>
@@ -169,7 +160,6 @@ header{display:flex;align-items:flex-start;justify-content:space-between;margin-
     <button class="nav-tab" onclick="showSection('categorias',this)">Categorías</button>
   </div>
 
-  <!-- MOVIMIENTOS -->
   <div class="section active" id="sec-movimientos">
     <div class="summary">
       <div class="card balance"><label>Balance</label><div class="amount" id="totalBalance">$0</div></div>
@@ -180,35 +170,25 @@ header{display:flex;align-items:flex-start;justify-content:space-between;margin-
     <div class="main-grid">
       <div class="form-panel">
         <h2>Nuevo Movimiento</h2>
-        <div class="form-row">
-          <div class="form-group full">
-            <label>Tipo</label>
-            <div class="type-toggle">
-              <button class="type-btn active entrada" onclick="setType('entrada')">▲ Entrada</button>
-              <button class="type-btn salida" onclick="setType('salida')">▼ Salida</button>
-              <button class="type-btn transferencia" onclick="setType('transferencia')">⇄ Transfer.</button>
-            </div>
+        <div class="form-row"><div class="form-group full"><label>Tipo</label>
+          <div class="type-toggle">
+            <button class="type-btn active entrada" onclick="setType('entrada')">▲ Entrada</button>
+            <button class="type-btn salida" onclick="setType('salida')">▼ Salida</button>
+            <button class="type-btn transferencia" onclick="setType('transferencia')">⇄ Transfer.</button>
           </div>
-        </div>
+        </div></div>
         <div class="form-row">
           <div class="form-group"><label>Fecha</label><input type="date" id="moveDate"></div>
           <div class="form-group"><label>Monto ($)</label><input type="number" id="moveAmount" placeholder="0.00" min="0" step="0.01"></div>
         </div>
         <div id="normalFields">
           <div class="form-row">
-            <div class="form-group"><label>Ámbito</label>
-              <select id="moveScope"><option value="personal">Personal</option><option value="negocio">Negocio</option></select>
-            </div>
-            <div class="form-group"><label>Medio de Pago</label>
-              <select id="moveMedio">
-                <option value="Banco Galicia">Banco Galicia</option>
-                <option value="Efectivo">Efectivo</option>
-                <option value="Mercado Pago Hugo">MP Hugo</option>
-                <option value="Mercado Pago Vanina">MP Vanina</option>
-                <option value="Mercado Pago Ariel">MP Ariel</option>
-                <option value="Mercado Pago Manuel">MP Manuel</option>
-              </select>
-            </div>
+            <div class="form-group"><label>Ámbito</label><select id="moveScope"><option value="personal">Personal</option><option value="negocio">Negocio</option></select></div>
+            <div class="form-group"><label>Medio de Pago</label><select id="moveMedio">
+              <option value="Banco Galicia">Banco Galicia</option><option value="Efectivo">Efectivo</option>
+              <option value="Mercado Pago Hugo">MP Hugo</option><option value="Mercado Pago Vanina">MP Vanina</option>
+              <option value="Mercado Pago Ariel">MP Ariel</option><option value="Mercado Pago Manuel">MP Manuel</option>
+            </select></div>
           </div>
           <div class="form-row">
             <div class="form-group"><label>Categoría</label><select id="moveCat"></select></div>
@@ -217,115 +197,51 @@ header{display:flex;align-items:flex-start;justify-content:space-between;margin-
         </div>
         <div id="transferFields" style="display:none">
           <div class="form-row">
-            <div class="form-group"><label>Cuenta Origen</label>
-              <select id="transferFrom">
-                <option value="Banco Galicia">Banco Galicia</option>
-                <option value="Efectivo">Efectivo</option>
-                <option value="Mercado Pago Hugo">MP Hugo</option>
-                <option value="Mercado Pago Vanina">MP Vanina</option>
-                <option value="Mercado Pago Ariel">MP Ariel</option>
-                <option value="Mercado Pago Manuel">MP Manuel</option>
-              </select>
-            </div>
-            <div class="form-group"><label>Cuenta Destino</label>
-              <select id="transferTo">
-                <option value="Efectivo">Efectivo</option>
-                <option value="Banco Galicia">Banco Galicia</option>
-                <option value="Mercado Pago Hugo">MP Hugo</option>
-                <option value="Mercado Pago Vanina">MP Vanina</option>
-                <option value="Mercado Pago Ariel">MP Ariel</option>
-                <option value="Mercado Pago Manuel">MP Manuel</option>
-              </select>
-            </div>
+            <div class="form-group"><label>Cuenta Origen</label><select id="transferFrom">
+              <option value="Banco Galicia">Banco Galicia</option><option value="Efectivo">Efectivo</option>
+              <option value="Mercado Pago Hugo">MP Hugo</option><option value="Mercado Pago Vanina">MP Vanina</option>
+              <option value="Mercado Pago Ariel">MP Ariel</option><option value="Mercado Pago Manuel">MP Manuel</option>
+            </select></div>
+            <div class="form-group"><label>Cuenta Destino</label><select id="transferTo">
+              <option value="Efectivo">Efectivo</option><option value="Banco Galicia">Banco Galicia</option>
+              <option value="Mercado Pago Hugo">MP Hugo</option><option value="Mercado Pago Vanina">MP Vanina</option>
+              <option value="Mercado Pago Ariel">MP Ariel</option><option value="Mercado Pago Manuel">MP Manuel</option>
+            </select></div>
           </div>
         </div>
-        <div class="form-group" style="margin-top:.3rem">
-          <label>Nota (opcional)</label>
-          <input type="text" id="moveNote" placeholder="Descripción adicional...">
-        </div>
+        <div class="form-group" style="margin-top:.3rem"><label>Nota (opcional)</label><input type="text" id="moveNote" placeholder="Descripción adicional..."></div>
         <button class="submit-btn" id="submitBtn" onclick="addMovement()">+ Registrar Movimiento</button>
       </div>
-
       <div class="list-panel">
         <div class="filters">
-          <div class="filter-group"><label>Usuario</label>
-            <select id="filterUser">
-              <option value="">Todos</option>
-              <option value="Hugo">Hugo</option>
-              <option value="Vanina">Vanina</option>
-              <option value="Ariel">Ariel</option>
-              <option value="Manuel">Manuel</option>
-            </select>
-          </div>
-          <div class="filter-group"><label>Tipo</label>
-            <select id="filterType" onchange="updateFilterCats()">
-              <option value="">Todos</option>
-              <option value="entrada">Entradas</option>
-              <option value="salida">Salidas</option>
-              <option value="transferencia">Transfer.</option>
-            </select>
-          </div>
-          <div class="filter-group"><label>Categoría</label>
-            <select id="filterCat" onchange="updateFilterSubcats()"><option value="">Todas</option></select>
-          </div>
-          <div class="filter-group"><label>Subcategoría</label>
-            <select id="filterSubcat"><option value="">Todas</option></select>
-          </div>
+          <div class="filter-group"><label>Usuario</label><select id="filterUser"><option value="">Todos</option><option value="Hugo">Hugo</option><option value="Vanina">Vanina</option><option value="Ariel">Ariel</option><option value="Manuel">Manuel</option></select></div>
+          <div class="filter-group"><label>Tipo</label><select id="filterType" onchange="updateFilterCats()"><option value="">Todos</option><option value="entrada">Entradas</option><option value="salida">Salidas</option><option value="transferencia">Transfer.</option></select></div>
+          <div class="filter-group"><label>Categoría</label><select id="filterCat" onchange="updateFilterSubcats()"><option value="">Todas</option></select></div>
+          <div class="filter-group"><label>Subcategoría</label><select id="filterSubcat"><option value="">Todas</option></select></div>
           <div class="filter-group"><label>Desde</label><input type="date" id="filterFrom"></div>
           <div class="filter-group"><label>Hasta</label><input type="date" id="filterTo"></div>
           <button class="clear-btn" onclick="clearFilters()">✕</button>
         </div>
         <div class="movements">
-          <div class="movements-header">
-            <h2>Movimientos</h2>
-            <span id="moveCount">—</span>
-          </div>
-          <div class="movements-list" id="movementsList">
-            <div class="empty-state">Conectando con Firebase...</div>
-          </div>
+          <div class="movements-header"><h2>Movimientos</h2><span id="moveCount">—</span></div>
+          <div class="movements-list" id="movementsList"><div class="empty-state">Conectando con Firebase...</div></div>
         </div>
         <div class="hint">Doble clic en un movimiento para editarlo</div>
       </div>
     </div>
   </div>
 
-  <!-- SALDOS -->
   <div class="section" id="sec-saldos">
     <div style="margin-bottom:.8rem;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;">Saldo por cuenta · tocá para ver movimientos</div>
     <div class="accounts-grid" id="accountsGrid"></div>
   </div>
 
-  <!-- GRÁFICOS -->
   <div class="section" id="sec-graficos">
     <div class="graf-filters">
-      <div class="filter-group">
-        <label>Período</label>
-        <select id="grafPeriod" onchange="onGrafPeriodChange()">
-          <option value="mes">Este mes</option>
-          <option value="mes_ant">Mes anterior</option>
-          <option value="anio">Este año</option>
-          <option value="todo">Todo</option>
-          <option value="custom">Personalizado</option>
-        </select>
-      </div>
-      <div class="filter-group" id="grafFromGroup" style="display:none">
-        <label>Desde</label>
-        <input type="date" id="grafFrom" onchange="renderGraficos()">
-      </div>
-      <div class="filter-group" id="grafToGroup" style="display:none">
-        <label>Hasta</label>
-        <input type="date" id="grafTo" onchange="renderGraficos()">
-      </div>
-      <div class="filter-group">
-        <label>Usuario</label>
-        <select id="grafUser" onchange="renderGraficos()">
-          <option value="">Todos</option>
-          <option value="Hugo">Hugo</option>
-          <option value="Vanina">Vanina</option>
-          <option value="Ariel">Ariel</option>
-          <option value="Manuel">Manuel</option>
-        </select>
-      </div>
+      <div class="filter-group"><label>Período</label><select id="grafPeriod" onchange="onGrafPeriodChange()"><option value="mes">Este mes</option><option value="mes_ant">Mes anterior</option><option value="anio">Este año</option><option value="todo">Todo</option><option value="custom">Personalizado</option></select></div>
+      <div class="filter-group" id="grafFromGroup" style="display:none"><label>Desde</label><input type="date" id="grafFrom" onchange="renderGraficos()"></div>
+      <div class="filter-group" id="grafToGroup" style="display:none"><label>Hasta</label><input type="date" id="grafTo" onchange="renderGraficos()"></div>
+      <div class="filter-group"><label>Usuario</label><select id="grafUser" onchange="renderGraficos()"><option value="">Todos</option><option value="Hugo">Hugo</option><option value="Vanina">Vanina</option><option value="Ariel">Ariel</option><option value="Manuel">Manuel</option></select></div>
     </div>
     <div class="graf-summary">
       <div class="card incomes"><label>Entradas</label><div class="amount" id="grafIncome">$0</div></div>
@@ -333,39 +249,20 @@ header{display:flex;align-items:flex-start;justify-content:space-between;margin-
       <div class="card balance"><label>Balance</label><div class="amount" id="grafBalance">$0</div></div>
     </div>
     <div class="graf-grid">
-      <div class="graf-panel">
-        <div class="graf-title">Salidas por Categoría</div>
-        <div class="chart-wrap" style="height:260px"><canvas id="grafChartCat"></canvas></div>
-      </div>
-      <div class="graf-panel">
-        <div class="graf-title">Entradas vs Salidas por Mes</div>
-        <div class="chart-wrap" style="height:260px"><canvas id="grafChartMonth"></canvas></div>
-      </div>
-      <div class="graf-panel" style="grid-column:1/-1">
-        <div class="graf-title">Gastos por Usuario</div>
-        <div class="chart-wrap" style="height:220px"><canvas id="grafChartUser"></canvas></div>
-      </div>
+      <div class="graf-panel"><div class="graf-title">Salidas por Categoría</div><div class="chart-wrap" style="height:260px"><canvas id="grafChartCat"></canvas></div></div>
+      <div class="graf-panel"><div class="graf-title">Entradas vs Salidas por Mes</div><div class="chart-wrap" style="height:260px"><canvas id="grafChartMonth"></canvas></div></div>
+      <div class="graf-panel" style="grid-column:1/-1"><div class="graf-title">Gastos por Usuario</div><div class="chart-wrap" style="height:220px"><canvas id="grafChartUser"></canvas></div></div>
     </div>
   </div>
 
-  <!-- CATEGORÍAS -->
   <div class="section" id="sec-categorias">
     <div class="two-col">
       <div class="cat-panel">
         <h2>Agregar</h2>
-        <div class="form-group" style="margin-bottom:.7rem">
-          <label>Tipo</label>
-          <select id="newCatType"><option value="salida">Salida</option><option value="entrada">Entrada</option></select>
-        </div>
-        <div class="add-row">
-          <div class="form-group"><label>Nueva categoría</label><input type="text" id="newCatName" placeholder="Ej: Educación"></div>
-          <button class="mini-btn" onclick="addCategory()">+ Cat.</button>
-        </div>
+        <div class="form-group" style="margin-bottom:.7rem"><label>Tipo</label><select id="newCatType"><option value="salida">Salida</option><option value="entrada">Entrada</option></select></div>
+        <div class="add-row"><div class="form-group"><label>Nueva categoría</label><input type="text" id="newCatName" placeholder="Ej: Educación"></div><button class="mini-btn" onclick="addCategory()">+ Cat.</button></div>
         <div style="margin-top:1rem;border-top:1px solid var(--border);padding-top:.9rem;">
-          <div class="form-group" style="margin-bottom:.7rem">
-            <label>Tipo</label>
-            <select id="newSubType" onchange="updateSubParentOpts()"><option value="salida">Salida</option><option value="entrada">Entrada</option></select>
-          </div>
+          <div class="form-group" style="margin-bottom:.7rem"><label>Tipo</label><select id="newSubType" onchange="updateSubParentOpts()"><option value="salida">Salida</option><option value="entrada">Entrada</option></select></div>
           <div class="add-row">
             <div class="form-group"><label>Categoría padre</label><select id="newSubParent"></select></div>
             <div class="form-group"><label>Subcategoría</label><input type="text" id="newSubName" placeholder="Ej: Guardería"></div>
@@ -373,69 +270,42 @@ header{display:flex;align-items:flex-start;justify-content:space-between;margin-
           </div>
         </div>
       </div>
-      <div class="cat-panel">
-        <h2>Categorías Actuales</h2>
-        <div id="catListView"></div>
-      </div>
+      <div class="cat-panel"><h2>Categorías Actuales</h2><div id="catListView"></div></div>
     </div>
   </div>
 </div>
 
-<!-- Detail modal -->
 <div class="modal-overlay" id="detailModal">
-  <div class="modal" style="width:480px;">
-    <h3 id="detailTitle">Detalle</h3>
-    <div id="detailContent" style="margin-top:.5rem;"></div>
-    <div class="modal-btns">
-      <button onclick="document.getElementById('detailModal').classList.remove('open')">Cerrar</button>
-    </div>
+  <div class="modal"><h3 id="detailTitle">Detalle</h3><div id="detailContent" style="margin-top:.5rem;"></div>
+    <div class="modal-btns"><button onclick="document.getElementById('detailModal').classList.remove('open')">Cerrar</button></div>
   </div>
 </div>
-
-<!-- Delete modal -->
 <div class="modal-overlay" id="deleteModal">
-  <div class="modal">
-    <h3>¿Eliminar movimiento?</h3>
-    <p>Esta acción no se puede deshacer.</p>
-    <div class="modal-btns">
-      <button onclick="closeDeleteModal()">Cancelar</button>
-      <button class="danger-btn" onclick="confirmDelete()">Eliminar</button>
-    </div>
+  <div class="modal"><h3>¿Eliminar movimiento?</h3><p>Esta acción no se puede deshacer.</p>
+    <div class="modal-btns"><button onclick="closeDeleteModal()">Cancelar</button><button class="danger-btn" onclick="confirmDelete()">Eliminar</button></div>
   </div>
 </div>
-
-<!-- Edit modal -->
 <div class="modal-overlay" id="editModal">
-  <div class="modal">
-    <h3>Editar Movimiento</h3>
+  <div class="modal"><h3>Editar Movimiento</h3>
     <div class="form-row" style="margin-bottom:.7rem">
       <div class="form-group"><label>Fecha</label><input type="date" id="editDate"></div>
       <div class="form-group"><label>Monto ($)</label><input type="number" id="editAmount" min="0" step="0.01"></div>
     </div>
     <div id="editNormalFields">
       <div class="form-row" style="margin-bottom:.7rem">
-        <div class="form-group"><label>Ámbito</label>
-          <select id="editScope"><option value="personal">Personal</option><option value="negocio">Negocio</option></select>
-        </div>
-        <div class="form-group"><label>Medio de Pago</label>
-          <select id="editMedio">
-            <option value="Banco Galicia">Banco Galicia</option>
-            <option value="Efectivo">Efectivo</option>
-            <option value="Mercado Pago Hugo">MP Hugo</option>
-            <option value="Mercado Pago Vanina">MP Vanina</option>
-            <option value="Mercado Pago Ariel">MP Ariel</option>
-            <option value="Mercado Pago Manuel">MP Manuel</option>
-          </select>
-        </div>
+        <div class="form-group"><label>Ámbito</label><select id="editScope"><option value="personal">Personal</option><option value="negocio">Negocio</option></select></div>
+        <div class="form-group"><label>Medio de Pago</label><select id="editMedio">
+          <option value="Banco Galicia">Banco Galicia</option><option value="Efectivo">Efectivo</option>
+          <option value="Mercado Pago Hugo">MP Hugo</option><option value="Mercado Pago Vanina">MP Vanina</option>
+          <option value="Mercado Pago Ariel">MP Ariel</option><option value="Mercado Pago Manuel">MP Manuel</option>
+        </select></div>
       </div>
       <div class="form-row" style="margin-bottom:.7rem">
         <div class="form-group"><label>Categoría</label><select id="editCat" onchange="updateEditSubcats()"></select></div>
         <div class="form-group"><label>Subcategoría</label><select id="editSubcat"></select></div>
       </div>
     </div>
-    <div class="form-group" style="margin-bottom:.7rem">
-      <label>Nota</label><input type="text" id="editNote" placeholder="Descripción adicional...">
-    </div>
+    <div class="form-group" style="margin-bottom:.7rem"><label>Nota</label><input type="text" id="editNote" placeholder="Descripción adicional..."></div>
     <div class="modal-btns">
       <button onclick="closeEditModal()">Cancelar</button>
       <button class="danger-btn" onclick="deleteFromEdit()">Eliminar</button>
@@ -462,17 +332,16 @@ var DEFAULT_CATS = {
 };
 var ACCOUNTS = ['Banco Galicia','Efectivo','Mercado Pago Hugo','Mercado Pago Vanina','Mercado Pago Ariel','Mercado Pago Manuel'];
 var ACCOUNT_COLORS = {
-  'Banco Galicia':       {bg:'#fff3e0',border:'#e65100',text:'#e65100'},
-  'Efectivo':            {bg:'#e8f5e9',border:'#43a047',text:'#2e7d32'},
-  'Mercado Pago Hugo':   {bg:'#e3f2fd',border:'#29b6f6',text:'#0277bd'},
-  'Mercado Pago Vanina': {bg:'#fce4ec',border:'#f06292',text:'#c2185b'},
-  'Mercado Pago Ariel':  {bg:'#e8eaf6',border:'#3949ab',text:'#1a237e'},
-  'Mercado Pago Manuel': {bg:'#e8f5e9',border:'#2e7d32',text:'#1b5e20'},
+  'Banco Galicia':{bg:'#fff3e0',border:'#e65100',text:'#e65100'},
+  'Efectivo':{bg:'#e8f5e9',border:'#43a047',text:'#2e7d32'},
+  'Mercado Pago Hugo':{bg:'#e3f2fd',border:'#29b6f6',text:'#0277bd'},
+  'Mercado Pago Vanina':{bg:'#fce4ec',border:'#f06292',text:'#c2185b'},
+  'Mercado Pago Ariel':{bg:'#e8eaf6',border:'#3949ab',text:'#1a237e'},
+  'Mercado Pago Manuel':{bg:'#e8f5e9',border:'#2e7d32',text:'#1b5e20'}
 };
 
 var movements=[], categories=JSON.parse(JSON.stringify(DEFAULT_CATS));
 var currentType='entrada';
-var chartCat=null, chartMonth=null;
 var grafChartCat=null, grafChartMonth=null, grafChartUser=null;
 var pendingDeleteId=null, editingId=null, editingType=null, clickTimer=null;
 
@@ -488,7 +357,7 @@ db.doc('config/categories').get().then(function(snap){
   if(snap.exists) categories=snap.data().data;
   else db.doc('config/categories').set({data:categories});
   updateCats(); updateSubParentOpts(); renderCatList(); updateFilterCats();
-}).catch(function(){updateCats();updateSubParentOpts();renderCatList();updateFilterCats();});
+}).catch(function(){ updateCats(); updateSubParentOpts(); renderCatList(); updateFilterCats(); });
 
 db.collection('movements').orderBy('date','desc').onSnapshot(function(snap){
   movements=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
@@ -496,10 +365,10 @@ db.collection('movements').orderBy('date','desc').onSnapshot(function(snap){
   renderAll();
   if(document.getElementById('sec-saldos').classList.contains('active')) renderAccounts();
   if(document.getElementById('sec-graficos').classList.contains('active')) renderGraficos();
-},function(){setBadge(false,'Error de conexión');});
+}, function(){ setBadge(false,'Error de conexión'); });
 
 ['filterUser','filterType','filterCat','filterSubcat','filterFrom','filterTo'].forEach(function(id){
-  document.getElementById(id).addEventListener('change',renderAll);
+  document.getElementById(id).addEventListener('change', renderAll);
 });
 
 function showSection(name,el){
@@ -509,7 +378,7 @@ function showSection(name,el){
   el.classList.add('active');
   if(name==='saldos') renderAccounts();
   if(name==='graficos') renderGraficos();
-  if(name==='categorias'){updateSubParentOpts();renderCatList();}
+  if(name==='categorias'){ updateSubParentOpts(); renderCatList(); }
 }
 
 function setType(t){
@@ -533,7 +402,6 @@ function updateSubcats(){
   var subs=(categories[currentType]&&categories[currentType][cat])||[];
   document.getElementById('moveSubcat').innerHTML=subs.map(function(s){return '<option value="'+s+'">'+s+'</option>';}).join('');
 }
-
 function updateFilterCats(){
   var type=document.getElementById('filterType').value;
   var catSel=document.getElementById('filterCat');
@@ -552,15 +420,16 @@ function updateFilterSubcats(){
   var cat=document.getElementById('filterCat').value;
   var subcatSel=document.getElementById('filterSubcat');
   subcatSel.innerHTML='<option value="">Todas</option>';
-  if(!cat){renderAll();return;}
-  var types=type&&type!=='transferencia'?[type]:['entrada','salida'];
-  types.forEach(function(t){
-    var subs=(categories[t]&&categories[t][cat])||[];
-    subs.forEach(function(s){subcatSel.innerHTML+='<option value="'+s+'">'+s+'</option>';});
-  });
-  renderAll();
+  if(!cat){ renderAll(); }
+  else {
+    var types=type&&type!=='transferencia'?[type]:['entrada','salida'];
+    types.forEach(function(t){
+      var subs=(categories[t]&&categories[t][cat])||[];
+      subs.forEach(function(s){subcatSel.innerHTML+='<option value="'+s+'">'+s+'</option>';});
+    });
+    renderAll();
+  }
 }
-
 function updateSubParentOpts(){
   var type=document.getElementById('newSubType').value;
   document.getElementById('newSubParent').innerHTML=Object.keys(categories[type]||{}).map(function(c){return '<option value="'+c+'">'+c+'</option>';}).join('');
@@ -568,15 +437,15 @@ function updateSubParentOpts(){
 
 function addMovement(){
   var user=document.getElementById('currentUser').value;
-  if(!user){alert('Elegí un usuario primero.');return;}
+  if(!user){alert('Elegí un usuario primero.'); return;}
   var amount=parseFloat(document.getElementById('moveAmount').value);
-  if(!amount||amount<=0){alert('Ingresá un monto válido.');return;}
+  if(!amount||amount<=0){alert('Ingresá un monto válido.'); return;}
   var btn=document.getElementById('submitBtn');
   btn.disabled=true; btn.textContent='Guardando...';
   var mov={user:user,type:currentType,date:document.getElementById('moveDate').value,amount:amount,note:document.getElementById('moveNote').value.trim(),timestamp:Date.now()};
   if(currentType==='transferencia'){
     var from=document.getElementById('transferFrom').value,to=document.getElementById('transferTo').value;
-    if(from===to){alert('Las cuentas deben ser diferentes.');btn.disabled=false;btn.textContent='+ Registrar Movimiento';return;}
+    if(from===to){alert('Las cuentas deben ser diferentes.');btn.disabled=false;btn.textContent='+ Registrar Movimiento'; return;}
     mov.from=from;mov.to=to;mov.cat='Transferencia';mov.subcat=from+' → '+to;mov.scope='personal';mov.medio=from;
   } else {
     mov.scope=document.getElementById('moveScope').value;
@@ -587,39 +456,37 @@ function addMovement(){
   db.collection('movements').add(mov).then(function(){
     document.getElementById('moveAmount').value='';
     document.getElementById('moveNote').value='';
-    btn.disabled=false;btn.textContent='+ Registrar Movimiento';
+    btn.disabled=false; btn.textContent='+ Registrar Movimiento';
   }).catch(function(e){alert('Error: '+e.message);btn.disabled=false;btn.textContent='+ Registrar Movimiento';});
 }
 
 function deleteMovement(id){pendingDeleteId=id;document.getElementById('deleteModal').classList.add('open');}
 function closeDeleteModal(){pendingDeleteId=null;document.getElementById('deleteModal').classList.remove('open');}
 function confirmDelete(){
-  if(!pendingDeleteId)return;
+  if(!pendingDeleteId) return;
   db.collection('movements').doc(pendingDeleteId).delete();
   closeDeleteModal();
 }
 
 function handleMovementClick(id,e){
-  if(e.target.classList.contains('delete-btn'))return;
+  if(e.target.classList.contains('delete-btn')) return;
   if(clickTimer){clearTimeout(clickTimer);clickTimer=null;openEditModal(id);}
   else{clickTimer=setTimeout(function(){clickTimer=null;},300);}
 }
-
 function openEditModal(id){
   var m=movements.find(function(x){return x.id===id;});
-  if(!m)return;
-  editingId=id;editingType=m.type;
+  if(!m) return;
+  editingId=id; editingType=m.type;
   document.getElementById('editDate').value=m.date;
   document.getElementById('editAmount').value=m.amount;
   document.getElementById('editNote').value=m.note||'';
-  var isTransfer=m.type==='transferencia';
-  document.getElementById('editNormalFields').style.display=isTransfer?'none':'block';
-  if(!isTransfer){
+  var isT=m.type==='transferencia';
+  document.getElementById('editNormalFields').style.display=isT?'none':'block';
+  if(!isT){
     document.getElementById('editScope').value=m.scope||'personal';
     document.getElementById('editMedio').value=m.medio||'Efectivo';
-    var cats=categories[m.type]||{};
     var catSel=document.getElementById('editCat');
-    catSel.innerHTML=Object.keys(cats).map(function(c){return '<option value="'+c+'">'+c+'</option>';}).join('');
+    catSel.innerHTML=Object.keys(categories[m.type]||{}).map(function(c){return '<option value="'+c+'">'+c+'</option>';}).join('');
     catSel.value=m.cat;
     updateEditSubcats();
     document.getElementById('editSubcat').value=m.subcat;
@@ -633,9 +500,9 @@ function updateEditSubcats(){
 }
 function closeEditModal(){editingId=null;document.getElementById('editModal').classList.remove('open');}
 function saveEdit(){
-  if(!editingId)return;
+  if(!editingId) return;
   var m=movements.find(function(x){return x.id===editingId;});
-  if(!m)return;
+  if(!m) return;
   var updates={date:document.getElementById('editDate').value,amount:parseFloat(document.getElementById('editAmount').value),note:document.getElementById('editNote').value.trim()};
   if(m.type!=='transferencia'){
     updates.scope=document.getElementById('editScope').value;
@@ -646,17 +513,16 @@ function saveEdit(){
   db.collection('movements').doc(editingId).update(updates).then(function(){closeEditModal();}).catch(function(e){alert('Error: '+e.message);});
 }
 function deleteFromEdit(){
-  if(!editingId)return;
-  if(!confirm('¿Eliminar este movimiento?'))return;
+  if(!editingId) return;
+  if(!confirm('¿Eliminar este movimiento?')) return;
   db.collection('movements').doc(editingId).delete();
   closeEditModal();
 }
 
 function clearFilters(){
   ['filterUser','filterType','filterCat','filterSubcat','filterFrom','filterTo'].forEach(function(id){document.getElementById(id).value='';});
-  updateFilterCats();renderAll();
+  updateFilterCats(); renderAll();
 }
-
 function getFiltered(){
   var fu=document.getElementById('filterUser').value;
   var ft=document.getElementById('filterType').value;
@@ -668,7 +534,6 @@ function getFiltered(){
     return(!fu||m.user===fu)&&(!ft||m.type===ft)&&(!fc||m.cat===fc)&&(!fs||m.subcat===fs)&&(!ff||m.date>=ff)&&(!ft2||m.date<=ft2);
   });
 }
-
 function fmt(n){return '$'+n.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
 function renderAll(){
@@ -682,11 +547,10 @@ function renderAll(){
   document.getElementById('totalTransfer').textContent=fmt(tr);
   renderList(f);
 }
-
 function renderList(data){
   var list=document.getElementById('movementsList');
   document.getElementById('moveCount').textContent=data.length+' registros';
-  if(!data.length){list.innerHTML='<div class="empty-state">No hay movimientos para mostrar.</div>';return;}
+  if(!data.length){list.innerHTML='<div class="empty-state">No hay movimientos para mostrar.</div>'; return;}
   list.innerHTML=data.map(function(m){
     var label=m.type==='transferencia'?'⇄ '+m.subcat:m.cat+' · '+m.subcat;
     var tag=m.type!=='transferencia'?'<span class="tag '+m.scope+'">'+m.scope+'</span>':'';
@@ -710,13 +574,14 @@ function renderAccounts(){
     var inf=movements.filter(function(m){return(m.type==='entrada'&&m.medio===a)||(m.type==='transferencia'&&m.to===a);}).reduce(function(s,m){return s+m.amount;},0);
     var out=movements.filter(function(m){return(m.type==='salida'&&m.medio===a)||(m.type==='transferencia'&&m.from===a);}).reduce(function(s,m){return s+m.amount;},0);
     var aId='acc-'+a.replace(/\s+/g,'_');
-    return '<div class="account-card" style="background:'+c.bg+';border-color:'+c.border+';border-width:2px;" onclick="toggleAccMovements(\''+aId+'\',\''+a+'\',\''+c.border+'\')"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="acc-name" style="color:'+c.text+'">'+a+'</div><div class="acc-amount" style="color:'+c.text+'">'+fmt(v)+'</div><div class="acc-sub">↑ '+fmt(inf)+' &nbsp;↓ '+fmt(out)+'</div></div><span style="font-size:.7rem;color:'+c.text+';opacity:.6;" id="arr-'+aId+'">▼</span></div><div id="'+aId+'" style="display:none;margin-top:.8rem;border-top:1px solid '+c.border+';padding-top:.7rem;"></div></div>';
+    return '<div class="account-card" style="background:'+c.bg+';border-color:'+c.border+';border-width:2px;" onclick="toggleAccMovements(\''+aId+'\',\''+a+'\')"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div class="acc-name" style="color:'+c.text+'">'+a+'</div><div class="acc-amount" style="color:'+c.text+'">'+fmt(v)+'</div><div class="acc-sub">↑ '+fmt(inf)+' &nbsp;↓ '+fmt(out)+'</div></div><span style="font-size:.7rem;color:'+c.text+';opacity:.6;" id="arr-'+aId+'">▼</span></div><div id="'+aId+'" style="display:none;margin-top:.8rem;border-top:1px solid '+c.border+';padding-top:.7rem;"></div></div>';
   }).join('')+'<div class="account-card" style="border-color:var(--accent);border-width:2px;cursor:default;"><div class="acc-name">Total General</div><div class="acc-amount '+(total>=0?'pos':'neg')+'">'+fmt(total)+'</div><div class="acc-sub">Todas las cuentas</div></div>';
 }
 
-function toggleAccMovements(aId,accName,borderColor){
+function toggleAccMovements(aId,accName){
   var div=document.getElementById(aId);
   var arr=document.getElementById('arr-'+aId);
+  var c=ACCOUNT_COLORS[accName]||{border:'var(--border)'};
   if(div.style.display==='none'){
     var movs=movements.filter(function(m){return(m.type==='entrada'&&m.medio===accName)||(m.type==='salida'&&m.medio===accName)||(m.type==='transferencia'&&(m.from===accName||m.to===accName));}).sort(function(a,b){return b.date>a.date?1:b.date<a.date?-1:0;});
     if(!movs.length){div.innerHTML='<div style="font-size:.7rem;color:var(--muted);text-align:center;padding:.5rem;">Sin movimientos</div>';}
@@ -728,38 +593,68 @@ function toggleAccMovements(aId,accName,borderColor){
         return '<div style="display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;border-bottom:1px solid rgba(0,0,0,.06);gap:.5rem;"><div style="min-width:0;"><div style="font-size:.72rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+label+'</div><div style="font-size:.58rem;color:var(--muted);">'+m.date+' · '+m.user+'</div></div><div style="font-family:\'Playfair Display\',serif;font-size:.9rem;font-weight:700;color:'+col+';white-space:nowrap;">'+pre+fmt(m.amount)+'</div></div>';
       }).join('');
     }
-    div.style.display='block';arr.textContent='▲';
-  } else {div.style.display='none';arr.textContent='▼';}
+    div.style.display='block'; arr.textContent='▲';
+  } else {div.style.display='none'; arr.textContent='▼';}
 }
 
-// GRÁFICOS
+function showDetail(title,rows){
+  document.getElementById('detailTitle').textContent=title;
+  if(!rows.length){
+    document.getElementById('detailContent').innerHTML='<div style="font-size:.75rem;color:var(--muted);padding:.5rem 0;">Sin movimientos para mostrar.</div>';
+    document.getElementById('detailModal').classList.add('open');
+  } else {
+    var total=rows.reduce(function(s,r){return s+r.amount;},0);
+    var bySub={};
+    rows.forEach(function(r){var key=r.subcat||r.cat;bySub[key]=(bySub[key]||0)+r.amount;});
+    var subEntries=Object.entries(bySub).sort(function(a,b){return b[1]-a[1];});
+    var html='<div style="margin-bottom:.8rem;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">'+rows.length+' movimientos</span><span style="font-family:\'Playfair Display\',serif;font-size:1.2rem;font-weight:700;">'+fmt(total)+'</span></div>';
+    html+='<div style="max-height:340px;overflow-y:auto;">';
+    subEntries.forEach(function(entry){
+      var sub=entry[0],amt=entry[1];
+      var pct=total>0?((amt/total)*100).toFixed(1):'0';
+      var barW=total>0?((amt/total)*100).toFixed(0):0;
+      html+='<div style="margin-bottom:.7rem;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.25rem;"><span style="font-size:.78rem;font-weight:500;">'+sub+'</span><span style="font-size:.78rem;font-family:\'Playfair Display\',serif;font-weight:700;">'+fmt(amt)+' <span style="font-size:.65rem;color:var(--muted);font-family:\'IBM Plex Mono\',monospace;">('+pct+'%)</span></span></div><div style="height:6px;background:var(--surface2);border-radius:3px;"><div style="height:6px;background:var(--expense);border-radius:3px;width:'+barW+'%;"></div></div></div>';
+    });
+    html+='</div>';
+    document.getElementById('detailContent').innerHTML=html;
+    document.getElementById('detailModal').classList.add('open');
+  }
+}
+function showCatDetail(cat,data){
+  var rows=data.filter(function(m){return m.cat===cat;}).sort(function(a,b){return b.date>a.date?1:-1;});
+  showDetail('📂 '+cat,rows);
+}
+function showMonthDetail(mo,data){
+  var rows=data.filter(function(m){return m.date.slice(0,7)===mo&&m.type!=='transferencia';}).sort(function(a,b){return b.date>a.date?1:-1;});
+  showDetail('📅 '+mo,rows);
+}
+function showUserDetail(user,data){
+  var rows=data.filter(function(m){return m.user===user&&m.type!=='transferencia';}).sort(function(a,b){return b.date>a.date?1:-1;});
+  showDetail('👤 '+user,rows);
+}
+
 function onGrafPeriodChange(){
   var p=document.getElementById('grafPeriod').value;
   document.getElementById('grafFromGroup').style.display=p==='custom'?'flex':'none';
   document.getElementById('grafToGroup').style.display=p==='custom'?'flex':'none';
   if(p!=='custom') renderGraficos();
 }
-
 function getGrafRange(){
   var p=document.getElementById('grafPeriod').value;
   var now=new Date();
   function pad(n){return String(n).padStart(2,'0');}
   function fmtD(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
-  if(p==='mes') return {from:now.getFullYear()+'-'+pad(now.getMonth()+1)+'-01',to:fmtD(now)};
+  if(p==='mes'){return {from:now.getFullYear()+'-'+pad(now.getMonth()+1)+'-01',to:fmtD(now)};}
   if(p==='mes_ant'){var d=new Date(now.getFullYear(),now.getMonth()-1,1);var last=new Date(now.getFullYear(),now.getMonth(),0);return {from:fmtD(d),to:fmtD(last)};}
-  if(p==='anio') return {from:now.getFullYear()+'-01-01',to:fmtD(now)};
-  if(p==='todo') return {from:'',to:''};
-  return {from:document.getElementById('grafFrom').value,to:document.getElementById('grafTo').value};
+  if(p==='anio'){return {from:now.getFullYear()+'-01-01',to:fmtD(now)};}
+  if(p==='custom'){return {from:document.getElementById('grafFrom').value,to:document.getElementById('grafTo').value};}
+  return {from:'',to:''};
 }
-
 function getGrafData(){
   var range=getGrafRange();
   var user=document.getElementById('grafUser').value;
-  return movements.filter(function(m){
-    return(!range.from||m.date>=range.from)&&(!range.to||m.date<=range.to)&&(!user||m.user===user);
-  });
+  return movements.filter(function(m){return(!range.from||m.date>=range.from)&&(!range.to||m.date<=range.to)&&(!user||m.user===user);});
 }
-
 function renderGraficos(){
   var data=getGrafData();
   var inc=data.filter(function(m){return m.type==='entrada';}).reduce(function(s,m){return s+m.amount;},0);
@@ -771,100 +666,53 @@ function renderGraficos(){
   var expByCat={};
   data.filter(function(m){return m.type==='salida';}).forEach(function(m){expByCat[m.cat]=(expByCat[m.cat]||0)+m.amount;});
   var cl=Object.keys(expByCat),cd=Object.values(expByCat);
-  var colors=['#9b2335','#c8973a','#2d4a3e','#5a7a6a','#8b6914','#6b3a4a','#3a5a8b','#6b4a8b','#a05030','#507a50'];
   var totalExp=cd.reduce(function(s,v){return s+v;},0);
+  var colors=['#9b2335','#c8973a','#2d4a3e','#5a7a6a','#8b6914','#6b3a4a','#3a5a8b','#6b4a8b','#a05030','#507a50'];
   if(grafChartCat) grafChartCat.destroy();
-  grafChartCat=new Chart(document.getElementById('grafChartCat'),{type:'doughnut',data:{labels:cl.length?cl:['Sin datos'],datasets:[{data:cd.length?cd:[1],backgroundColor:cl.length?colors.slice(0,cl.length):['#e0d8cc'],borderWidth:2,borderColor:'#fffdf8'}]},options:{responsive:true,maintainAspectRatio:false,onClick:function(evt,els){if(!els.length){return;}var cat=cl[els[0].index];showCatDetail(cat,data);},plugins:{tooltip:{callbacks:{label:function(ctx){var val=ctx.parsed;var pct=totalExp>0?((val/totalExp)*100).toFixed(1):'0';return ' '+fmt(val)+' ('+pct+'%)';}}}  ,legend:{position:'right',labels:{font:{family:'IBM Plex Mono',size:10},color:'#1a1a14',boxWidth:12}}}}});
+  grafChartCat=new Chart(document.getElementById('grafChartCat'),{type:'doughnut',data:{labels:cl.length?cl:['Sin datos'],datasets:[{data:cd.length?cd:[1],backgroundColor:cl.length?colors.slice(0,cl.length):['#e0d8cc'],borderWidth:2,borderColor:'#fffdf8'}]},options:{responsive:true,maintainAspectRatio:false,onClick:function(evt,els){if(els.length){showCatDetail(cl[els[0].index],data);}},plugins:{tooltip:{callbacks:{label:function(ctx){var val=ctx.parsed;var pct=totalExp>0?((val/totalExp)*100).toFixed(1):'0';return ' '+fmt(val)+' ('+pct+'%)';}}}  ,legend:{position:'right',labels:{font:{family:'IBM Plex Mono',size:10},color:'#1a1a14',boxWidth:12}}}}});
 
   var byMonth={};
   data.filter(function(m){return m.type!=='transferencia';}).forEach(function(m){var mo=m.date.slice(0,7);if(!byMonth[mo])byMonth[mo]={entrada:0,salida:0};byMonth[mo][m.type]+=m.amount;});
   var months=Object.keys(byMonth).sort();
   if(grafChartMonth) grafChartMonth.destroy();
-  grafChartMonth=new Chart(document.getElementById('grafChartMonth'),{type:'bar',data:{labels:months.length?months:['Sin datos'],datasets:[{label:'Entradas',data:months.map(function(m){return byMonth[m].entrada;}),backgroundColor:'#2d6a4f',borderRadius:3},{label:'Salidas',data:months.map(function(m){return byMonth[m].salida;}),backgroundColor:'#9b2335',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,onClick:function(evt,els){if(!els.length)return;var mo=months[els[0].index];showMonthDetail(mo,data);},plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.dataset.label+': '+fmt(ctx.parsed.y);}}},legend:{labels:{font:{family:'IBM Plex Mono',size:10},color:'#1a1a14',boxWidth:12}}},scales:{x:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260'}},y:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260',callback:function(v){return fmt(v);}}}}}});
+  grafChartMonth=new Chart(document.getElementById('grafChartMonth'),{type:'bar',data:{labels:months.length?months:['Sin datos'],datasets:[{label:'Entradas',data:months.map(function(m){return byMonth[m].entrada;}),backgroundColor:'#2d6a4f',borderRadius:3},{label:'Salidas',data:months.map(function(m){return byMonth[m].salida;}),backgroundColor:'#9b2335',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,onClick:function(evt,els){if(els.length){showMonthDetail(months[els[0].index],data);}},plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.dataset.label+': '+fmt(ctx.parsed.y);}}},legend:{labels:{font:{family:'IBM Plex Mono',size:10},color:'#1a1a14',boxWidth:12}}},scales:{x:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260'}},y:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260',callback:function(v){return fmt(v);}}}}}});
 
   var usuarios=['Hugo','Vanina','Ariel','Manuel'];
   var byUser={};
   usuarios.forEach(function(u){byUser[u]={entrada:0,salida:0};});
   data.filter(function(m){return m.type!=='transferencia';}).forEach(function(m){if(byUser[m.user]){byUser[m.user][m.type]+=m.amount;}});
   if(grafChartUser) grafChartUser.destroy();
-  grafChartUser=new Chart(document.getElementById('grafChartUser'),{type:'bar',data:{labels:usuarios,datasets:[{label:'Entradas',data:usuarios.map(function(u){return byUser[u].entrada;}),backgroundColor:'#2d6a4f',borderRadius:3},{label:'Salidas',data:usuarios.map(function(u){return byUser[u].salida;}),backgroundColor:'#9b2335',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,onClick:function(evt,els){if(!els.length)return;var u=usuarios[els[0].index];showUserDetail(u,data);},plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.dataset.label+': '+fmt(ctx.parsed.y);}}},legend:{labels:{font:{family:'IBM Plex Mono',size:10},color:'#1a1a14',boxWidth:12}}},scales:{x:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260'}},y:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260',callback:function(v){return fmt(v);}}}}}});
+  grafChartUser=new Chart(document.getElementById('grafChartUser'),{type:'bar',data:{labels:usuarios,datasets:[{label:'Entradas',data:usuarios.map(function(u){return byUser[u].entrada;}),backgroundColor:'#2d6a4f',borderRadius:3},{label:'Salidas',data:usuarios.map(function(u){return byUser[u].salida;}),backgroundColor:'#9b2335',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,onClick:function(evt,els){if(els.length){showUserDetail(usuarios[els[0].index],data);}},plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.dataset.label+': '+fmt(ctx.parsed.y);}}},legend:{labels:{font:{family:'IBM Plex Mono',size:10},color:'#1a1a14',boxWidth:12}}},scales:{x:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260'}},y:{grid:{color:'#e0d8cc'},ticks:{font:{family:'IBM Plex Mono',size:9},color:'#7a7260',callback:function(v){return fmt(v);}}}}}});
 }
 
-function showDetail(title, rows) {
-  document.getElementById('detailTitle').textContent = title;
-  if(!rows.length){
-    document.getElementById('detailContent').innerHTML='<div style="font-size:.75rem;color:var(--muted);padding:.5rem 0;">Sin movimientos para mostrar.</div>';
-    document.getElementById('detailModal').classList.add('open');
-  } else {
-    var total=rows.reduce(function(s,r){return s+r.amount;},0);
-    var bySub={};
-    rows.forEach(function(r){var key=r.subcat||r.cat;bySub[key]=(bySub[key]||0)+r.amount;});
-    var subEntries=Object.entries(bySub).sort(function(a,b){return b[1]-a[1];});
-    var html='<div style="margin-bottom:.8rem;display:flex;justify-content:space-between;align-items:center;">'
-      +'<span style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">'+rows.length+' movimientos</span>'
-      +'<span style="font-family:\'Playfair Display\',serif;font-size:1.2rem;font-weight:700;">'+fmt(total)+'</span></div>';
-    html+='<div style="max-height:340px;overflow-y:auto;">';
-    subEntries.forEach(function(entry){
-      var sub=entry[0],amt=entry[1];
-      var pct=total>0?((amt/total)*100).toFixed(1):'0';
-      var barW=total>0?((amt/total)*100).toFixed(0):0;
-      html+='<div style="margin-bottom:.7rem;">'
-        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.25rem;">'
-        +'<span style="font-size:.78rem;font-weight:500;">'+sub+'</span>'
-        +'<span style="font-size:.78rem;font-family:\'Playfair Display\',serif;font-weight:700;">'+fmt(amt)
-        +' <span style="font-size:.65rem;color:var(--muted);font-family:\'IBM Plex Mono\',monospace;">('+pct+'%)</span></span></div>'
-        +'<div style="height:6px;background:var(--surface2);border-radius:3px;">'
-        +'<div style="height:6px;background:var(--expense);border-radius:3px;width:'+barW+'%;"></div></div></div>';
-    });
-    html+='</div>';
-    document.getElementById('detailContent').innerHTML=html;
-    document.getElementById('detailModal').classList.add('open');
-  }
+function saveCategories(){
+  db.doc('config/categories').set({data:categories});
 }
-
-function showCatDetail(cat, data) {
-  var rows=data.filter(function(m){return m.cat===cat;}).sort(function(a,b){return b.date>a.date?1:-1;});
-  showDetail('📂 '+cat, rows);
-}
-
-function showMonthDetail(mo, data) {
-  var rows=data.filter(function(m){return m.date.slice(0,7)===mo&&m.type!=='transferencia';}).sort(function(a,b){return b.date>a.date?1:-1;});
-  showDetail('📅 '+mo, rows);
-}
-
-function showUserDetail(user, data) {
-  var rows=data.filter(function(m){return m.user===user&&m.type!=='transferencia';}).sort(function(a,b){return b.date>a.date?1:-1;});
-  showDetail('👤 '+user, rows);
-}
-
-db.doc('config/categories').set({data:categories});
-
 function addCategory(){
   var type=document.getElementById('newCatType').value,name=document.getElementById('newCatName').value.trim();
-  if(!name){alert('Ingresá un nombre.');return;}
+  if(!name){alert('Ingresá un nombre.'); return;}
   if(!categories[type])categories[type]={};
-  if(categories[type][name]){alert('Esa categoría ya existe.');return;}
+  if(categories[type][name]){alert('Esa categoría ya existe.'); return;}
   categories[type][name]=[]; document.getElementById('newCatName').value='';
-  saveCategories().then(function(){updateCats();updateSubParentOpts();renderCatList();updateFilterCats();});
+  saveCategories(); updateCats(); updateSubParentOpts(); renderCatList(); updateFilterCats();
 }
 function addSubcategory(){
   var type=document.getElementById('newSubType').value,parent=document.getElementById('newSubParent').value,name=document.getElementById('newSubName').value.trim();
-  if(!name){alert('Ingresá un nombre.');return;}
-  if(categories[type][parent].includes(name)){alert('Esa subcategoría ya existe.');return;}
+  if(!name){alert('Ingresá un nombre.'); return;}
+  if(categories[type][parent].includes(name)){alert('Esa subcategoría ya existe.'); return;}
   categories[type][parent].push(name); document.getElementById('newSubName').value='';
-  saveCategories().then(function(){updateCats();renderCatList();});
+  saveCategories(); updateCats(); renderCatList();
 }
 function deleteCat(type,cat){
-  if(!confirm('¿Eliminar "'+cat+'" y sus subcategorías?'))return;
+  if(!confirm('¿Eliminar "'+cat+'" y sus subcategorías?')) return;
   delete categories[type][cat];
-  saveCategories().then(function(){updateCats();updateSubParentOpts();renderCatList();updateFilterCats();});
+  saveCategories(); updateCats(); updateSubParentOpts(); renderCatList(); updateFilterCats();
 }
 function deleteSub(type,cat,sub){
-  if(!confirm('¿Eliminar "'+sub+'"?'))return;
+  if(!confirm('¿Eliminar "'+sub+'"?')) return;
   categories[type][cat]=categories[type][cat].filter(function(s){return s!==sub;});
-  saveCategories().then(function(){updateCats();renderCatList();});
+  saveCategories(); updateCats(); renderCatList();
 }
-
 function renderCatList(){
   var html='';
   ['entrada','salida'].forEach(function(type){
